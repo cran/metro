@@ -1,3 +1,11 @@
+# metro 0.9.2
+
+* Update to new package doc help page.
+* `bus_schedule()` now correctly merges both directions (thanks Prof. Moore!)
+* No longer calls `unlist()` on affected lines of length one.
+* Messages given instead of warnings when empty tibbles returned.
+    * These conditions are tested with `no_data_now()` and `mockr::with_mock()`.
+
 # metro 0.9.1
 
 * Covered most [JSON endpoints](https://developer.wmata.com/docs/services/) 

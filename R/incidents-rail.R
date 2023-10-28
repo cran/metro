@@ -31,7 +31,7 @@ rail_incidents <- function(api_key = wmata_key()) {
     level = 1,
     api_key = api_key
   )
-  if (length(dat) == 0) {
+  if (no_data_now(dat)) {
     message("No rail incidents reported")
     return(empty_rail_incidents)
   }
@@ -39,9 +39,6 @@ rail_incidents <- function(api_key = wmata_key()) {
   # StartLocationFullName
   dat <- dat[, -c(3:6, 8)]
   dat[[4]] <- strsplit(dat[[4]], ";\\s?")
-  if (all(vapply(dat[[4]], length, double(1)) == 1)) {
-    dat[[4]] <- unlist(dat[[4]])
-  }
   dat[[5]] <- api_time(dat[[5]])
   tibble::as_tibble(dat)
 }
