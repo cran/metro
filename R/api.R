@@ -30,7 +30,7 @@ wmata_api <- function(path, query = NULL, ..., level, api_key = wmata_key()) {
     query = query,
     httr::accept_json(),
     httr::add_headers(api_key = api_key),
-    httr::user_agent("https://github.com/kiernann/metro/"),
+    httr::user_agent("https://github.com/k5cents/metro/"),
     terminate_on = c(400:417)
   )
   if (httr::http_type(resp) != "application/json") {
@@ -38,7 +38,8 @@ wmata_api <- function(path, query = NULL, ..., level, api_key = wmata_key()) {
   }
   raw <- httr::content(resp, as = "text", encoding = "UTF-8")
   parsed <- jsonlite::fromJSON(raw, ...)
-  if (httr::http_error(resp) && "message" %in% names(parsed)) {
+  if (httr::http_error(resp) && "message" %in% tolower(names(parsed))) {
+    names(parsed) <- tolower(names(parsed))
     stop(
       sprintf(
         "WMATA API request failed [%s]\n%s",

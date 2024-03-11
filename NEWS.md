@@ -1,3 +1,13 @@
+# metro 0.9.3
+
+* Switch from MIT license to GPL-3
+* Update maintainer email, website URL, and GitHub URL.
+* Due to an error in the rail timing endpoint, the `rail_times()` function can
+  only return example data for the time being. (#15)
+* Due to an error in the train position endpoint, the `train_position()` 
+  function can only return example data for the time being. (#16)
+* Add `StopId` column to `bus_departs()` and use current date in the example.
+
 # metro 0.9.2
 
 * Update to new package doc help page.
